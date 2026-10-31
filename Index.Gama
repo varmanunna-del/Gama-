@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DJ Family Dhaba</title>
+
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #fffaf0;
+      color: #292016;
+    }
+
+    header {
+      background: #25130c;
+      color: white;
+      padding: 18px 7%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+
+    .logo {
+      color: #ffc857;
+      font-size: 25px;
+      font-weight: bold;
+    }
+
+    nav a {
+      color: white;
+      text-decoration: none;
+      margin: 0 8px;
+      font-size: 14px;
+    }
+
+    nav a:hover {
+      color: #ffc857;
+    }
+
+    .hero {
+      min-height: 420px;
+      background:
+        linear-gradient(90deg, rgba(25,12,5,.9),
+        rgba(25,12,5,.35)),
+        url("https://images.unsplash.com/photo-1555939594-58d7cb561ad1?auto=format&fit=crop&w=1600&q=85")
+        center/cover;
+      color: white;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      padding: 60px 8%;
+    }
+
+    .hero h1 {
+      color: #ffc857;
+      font-size: clamp(38px, 7vw, 65px);
+      margin-bottom: 15px;
+    }
+
+    .hero p {
+      font-size: 18px;
+      max-width: 500px;
+      line-height: 1.7;
+    }
+
+    .btn {
+      display: inline-block;
+      background: #c83220;
+      color: white;
+      padding: 13px 22px;
+      margin-top: 22px;
+      text-decoration: none;
+      border-radius: 6px;
+      border: none;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .btn:hover {
+      background: #982518;
+    }
+
+    section {
+      padding: 55px 7%;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: 32px;
+      margin-bottom: 12px;
+      color: #762719;
+    }
+
+    .subtitle {
+      text-align: center;
+      color: #75665a;
+      margin-bottom: 30px;
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+      gap: 18px;
+    }
+
+    .feature {
+      background: white;
+      padding: 24px;
+      text-align: center;
+      border-radius: 12px;
+      box-shadow: 0 3px 14px #00000012;
+    }
+
+    .feature .emoji {
+      font-size: 38px;
+      margin-bottom: 12px;
+    }
+
+    #menu {
+      background: #f5ead8;
+    }
+
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .filter {
+      padding: 10px 17px;
+      background: white;
+      color: #762719;
+      border: 1px solid #762719;
+      border-radius: 25px;
+      cursor: pointer;
+    }
+
+    .filter.active,
+    .filter:hover {
+      background: #762719;
+      color: white;
+    }
+
+    #search {
+      display: block;
+      width: min(100%, 440px);
+      padding: 13px;
+      margin: 0 auto 28px;
+      border: 1px solid #cdbda9;
+      border-radius: 7px;
+      font-size: 16px;
+    }
+
+    .menu-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 20px;
+    }
+
+    .food-card {
+      background: white;
+      border-radius: 12px;
+      overflow: hidden;
+      box-shadow: 0 4px 12px #00000012;
+    }
+
+    .food-card img {
+      width: 100%;
+      height: 165px;
+      object-fit: cover;
+      display: block;
+    }
+
+    .food-info {
+      padding: 16px;
+    }
+
+    .food-info h3 {
+      margin-bottom: 8px;
+    }
+
+    .food-info p {
+      color: #75665a;
+      font-size: 13px;
+      margin-bottom: 12px;
+    }
+
+    .food-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .price {
+      color: #a52c1d;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .order-btn {
+      background: #247746;
+      color: white;
+      padding: 9px 12px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .empty {
+      grid-column: 1 / -1;
+      text-align: center;
+      padding: 30px;
+    }
+
+    .about {
+      line-height: 1.9;
+      max-width: 800px;
+      margin: auto;
+      text-align: center;
+    }
+
+    .contact {
+      background: #29160e;
+      color: white;
+      text-align: center;
+    }
+
+    .contact .section-title {
+      color: #ffc857;
+    }
+
+    .contact p {
+      margin: 12px 0;
+    }
+
+    footer {
+      background: #160c07;
+      color: #d8c7b5;
+      text-align: center;
+      padding: 20px;
+      font-size: 13px;
+    }
+
+    @media (max-width: 600px) {
+      header {
+        justify-content: center;
+        text-align: center;
+      }
+
+      nav a {
+        display: inline-block;
+        margin: 5px;
+      }
+
+      .hero {
+        min-height: 350px;
+      }
+
+      section {
+        padding: 40px 5%;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">🍗 DJ FAMILY DHABA</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#menu">Food Menu</a>
+    <a href="#about">About</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<section class="hero" id="home">
+  <h1>DJ Family Dhaba</h1>
+  <p>
+    Delicious food, traditional flavours and a warm family
+    dining experience. Come hungry, leave happy!
+  </p>
+  <a class="btn" href="#menu">Explore Our Menu</a>
+</section>
+
+<section>
+  <h2 class="section-title">Welcome to DJ Family Dhaba</h2>
+  <p class="subtitle">Good food • Great taste • Family time</p>
+
+  <div class="features">
+    <div class="feature">
+      <div class="emoji">🍛</div>
+      <h3>Tasty Food</h3>
+      <p>Enjoy your favourite meals.</p>
+    </div>
+    <div class="feature">
+      <div class="emoji">👨‍👩‍👧‍👦</div>
+      <h3>Family Dining</h3>
+      <p>A welcoming place for everyone.</p>
+    </div>
+    <div class="feature">
+      <div class="emoji">🥡</div>
+      <h3>Takeaway</h3>
+      <p>Order food to enjoy elsewhere.</p>
+    </div>
+    <div class="feature">
+      <div class="emoji">🍗</div>
+      <h3>Variety of Dishes</h3>
+      <p>Choose from our food menu.</p>
+    </div>
+  </div>
+</section>
+
+<section id="menu">
+  <h2 class="section-title">Our Food Menu</h2>
+  <p class="subtitle">
+    Find your favourite dish at DJ Family Dhaba
+  </p>
+
+  <div class="filters" id="filters">
+    <button class="filter active" data-category="All">All Items</button>
+    <button class="filter" data-category="Starters">Starters</button>
+    <button class="filter" data-category="Veg">Veg</button>
+    <button class="filter" data-category="Non-Veg">Non-Veg</button>
+    <button class="filter" data-category="Biryani">Biryani</button>
+    <button class="filter" data-category="Breads">Breads</button>
+    <button class="filter" data-category="Drinks">Drinks</button>
+  </div>
+
+  <input
+    type="search"
+    id="search"
+    placeholder="Search food items..."
+    aria-label="Search food items"
+  >
+
+  <div class="menu-grid" id="menuGrid"></div>
+</section>
+
+<section id="about">
+  <h2 class="section-title">About Our Dhaba</h2>
+  <div class="about">
+    <p>
+      Welcome to DJ Family Dhaba! We aim to provide a friendly
+      dining experience for families, friends and food lovers.
+      Explore our menu, choose your favourite dishes and contact
+      us to place an order.
+    </p>
+    <p>
+      Our restaurant details, actual menu, prices and services
+      can be updated to match your business.
+    </p>
+  </div>
+</section>
+
+<section class="contact" id="contact">
+  <h2 class="section-title">Visit Us</h2>
+  <p><strong>Restaurant:</strong> DJ Family Dhaba</p>
+  <p><strong>Address:</strong> Add your dhaba location here</p>
+  <p><strong>Phone:</strong> Add your phone number here</p>
+  <p><strong>Opening Hours:</strong> Add your timings here</p>
+  <a class="btn" id="contactBtn" href="#"
+     onclick="return contactDhaba(event)">
+    Contact on WhatsApp
+  </a>
+</section>
+
+<footer>
+  <p>© <span id="year"></span> DJ Family Dhaba. All rights reserved.</p>
+  <p>Made with ❤️ for food lovers</p>
+</footer>
+
+<script>
+  // EDIT THIS LIST: Add your real menu items and prices here.
+  // The prices below are examples, not confirmed dhaba prices.
+
+  const menuItems = [
+    {
+      name: "Veg Fried Rice",
+      category: "Veg",
+      price: 100,
+      description: "Vegetable fried rice",
+      emoji: "🍚"
+    },
+    {
+      name: "Paneer Curry",
+      category: "Veg",
+      price: 150,
+      description: "Rich paneer curry",
+      emoji: "🍛"
+    },
+    {
+      name: "Chicken Fry",
+      category: "Starters",
+      price: 180,
+      description: "Spicy chicken starter",
+      emoji: "🍗"
+    },
+    {
+      name: "Chicken Biryani",
+      category: "Biryani",
+      price: 180,
+      description: "Aromatic chicken biryani",
+      emoji: "🍲"
+    },
+    {
+      name: "Veg Biryani",
+      category: "Biryani",
+      price: 120,
+      description: "Flavourful vegetable biryani",
+      emoji: "🥘"
+    },
+    {
+      name: "Butter Naan",
+      category: "Breads",
+      price: 40,
+      description: "Soft naan with butter",
+      emoji: "🫓"
+    },
+    {
+      name: "Tandoori Roti",
+      category: "Breads",
+      price: 25,
+      description: "Traditional Indian bread",
+      emoji: "🫓"
+    },
+    {
+      name: "Chicken Curry",
+      category: "Non-Veg",
+      price: 170,
+      description: "Traditional chicken curry",
+      emoji: "🍗"
+    },
+    {
+      name: "Cool Drink",
+      category: "Drinks",
+      price: 40,
+      description: "Refreshing cold drink",
+      emoji: "🥤"
+    }
+  ];
+
+  // Replace with your WhatsApp number:
+  // Country code + number, digits only. Example: 919876543210
+  const WHATSAPP_NUMBER = "91XXXXXXXXXX";
+
+  let selectedCategory = "All";
+
+  function renderMenu() {
+    const searchText =
+      document.getElementById("search").value.toLowerCase().trim();
+
+    const filtered = menuItems.filter(item => {
+      const matchesCategory =
+        selectedCategory === "All" ||
+        item.category === selectedCategory;
+
+      const matchesSearch =
+        item.name.toLowerCase().includes(searchText) ||
+        item.category.toLowerCase().includes(searchText);
+
+      return matchesCategory && matchesSearch;
+    });
+
+    const grid = document.getElementById("menuGrid");
+
+    if (filtered.length === 0) {
+      grid.innerHTML =
+        '<p class="empty">No food items found. Try another search.</p>';
+      return;
+    }
+
+    grid.innerHTML = filtered.map((item, index) => `
+      <article class="food-card">
+        <div style="
+          height:165px;
+          display:flex;
+          align-items:center;
+          justify-content:center;
+          font-size:65px;
+          background:#ead8bd;
+        " role="img" aria-label="${item.category}">
+          ${item.emoji}
+        </div>
+        <div class="food-info">
+          <h3>${item.name}</h3>
+          <p>${item.description}</p>
+          <div class="food-bottom">
+            <span class="price">₹${item.price}</span>
+            <button class="order-btn"
+              onclick="orderItem(${menuItems.indexOf(item)})">
+              Order
+            </button>
+          </div>
+        </div>
+      </article>
+    `).join("");
+  }
+
+  document.getElementById("filters").addEventListener("click", event => {
+    const button = event.target.closest("button[data-category]");
+    if (!button) return;
+
+    selectedCategory = button.dataset.category;
+
+    document.querySelectorAll(".filter").forEach(btn => {
+      btn.classList.toggle("active", btn === button);
+    });
+
+    renderMenu();
+  });
+
+  document.getElementById("search").addEventListener("input", renderMenu);
+
+  function orderItem(index) {
+    const item = menuItems[index];
+
+    if (!item) return;
+
+    if (!/^91\d{10}$/.test(WHATSAPP_NUMBER)) {
+      alert("Please add your correct WhatsApp number in the HTML code.");
+      return;
+    }
+
+    const message =
+      `Hello DJ Family Dhaba! I want to order ${item.name}. ` +
+      `Listed price: ₹${item.price}. Please confirm availability and price.`;
+
+    window.open(
+      "https://wa.me/" + WHATSAPP_NUMBER +
+      "?text=" + encodeURIComponent(message),
+      "_blank"
+    );
+  }
+
+  function contactDhaba(event) {
+    event.preventDefault();
+
+    if (!/^91\d{10}$/.test(WHATSAPP_NUMBER)) {
+      alert("Please add your correct WhatsApp number in the HTML code.");
+      return false;
+    }
+
+    window.open("https://wa.me/" + WHATSAPP_NUMBER, "_blank");
+    return false;
+  }
+
+  document.getElementById("year").textContent =
+    new Date().getFullYear();
+
+  renderMenu();
+</script>
+
+</body>
+</html>
